@@ -1,7 +1,7 @@
 const startButton = document.getElementById("start-button");
 startButton.addEventListener("click", randomWord);
 
-// Véletlenszerű szó kiválasztása, a betűknek divek létrehozása
+// Véletlenszerű szó kiválasztása az adatbázisból, előző betű divek kitörlése, a betűknek divek létrehozása
 function randomWord() {
   fetch("http://localhost:3000/words/")
     .then(response => response.json())
@@ -21,7 +21,7 @@ function createGame(str) {
   let i = 1;
   while (i <= str.length) {
     const letterDiv = document.createElement("div");
-    letterDiv.id = `${i}`;
+    letterDiv.id = `letter-${i}`;
     letterDiv.textContent = str.at(i-1);
     letterBox.append(letterDiv);
     i++;
@@ -36,3 +36,9 @@ function removeLetterBox() {
     letterBox.remove();
   }
 }
+
+// Betű beírása
+let form = document.getElementById("formId");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
