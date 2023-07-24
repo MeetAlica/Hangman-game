@@ -1,6 +1,8 @@
 const startButton = document.getElementById("start-button");
 startButton.addEventListener("click", randomWord);
 
+let lives = 5;
+
 // Véletlenszerű szó kiválasztása az adatbázisból, előző betű divek kitörlése, a betűknek divek létrehozása
 function randomWord() {
   fetch("http://localhost:3000/words/")
@@ -31,7 +33,6 @@ function createGame(str) {
     i++;
   }
   solutionContainer.append(letterBox);
-  console.log(theWord);
 }
 
 // Előző játék kitörlése
@@ -47,17 +48,54 @@ let form = document.getElementById("formId");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const userLetter = document.getElementById("form-text").value;
-  console.log(userLetter);
 
   // Összehasonlítás a megoldással
+  let letter;
+  let number = 0;
   for (let i = 0; i < theWord.length; i++) {
     if (userLetter == theWord[i]) {
       const letterDiv = document.getElementById(`letter-${i + 1}`);
       letterDiv.classList.remove("unsolved");
       letterDiv.classList.add("solved");
     } else {
-      const usedLettersContainer = document.getElementById("letter-container");
-      usedLettersContainer.append(userLetter);
+      letter = `${userLetter}, `;
+      number++;
+    };
+  };
+
+  const usedLettersContainer = document.getElementById("letter-container");
+  usedLettersContainer.append(letter);
+
+  // Élet csökkenése
+  if (theWord.length == number) {
+    lives--;
+    let background = document.getElementById("main-container");
+    let life5 = document.getElementById("lives-5");
+    let life4 = document.getElementById("lives-4");
+    let life3 = document.getElementById("lives-3");
+    let life2 = document.getElementById("lives-2");
+    let life1 = document.getElementById("lives-1");
+
+    if (lives == 4) {
+      background.classList.add("lives-4");
+      life5.style.display = "none";
+    };
+    if (lives == 3) {
+      background.classList.add("lives-3");
+      life4.style.display = "none";
+    };
+    if (lives == 2) {
+      background.classList.add("lives-2");
+      life3.style.display = "none";
+    };
+    if (lives == 1) {
+      background.classList.add("lives-1");
+      life2.style.display = "none";
+    };
+    if (lives == 0) {
+      background.classList.add("lives-0");
+      life1.style.display = "none";
+      alert("GAME OVER!");
     };
   };
 });
