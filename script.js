@@ -17,9 +17,14 @@ function randomWord() {
 // Divek létrehozása a betűknek
 const solutionContainer = document.getElementById("solution-container");
 
-const theWord = [];
+let theWord = [];
 
 function createGame(str) {
+  let letterContainer = document.getElementById("letter-container");
+  let letterDiv = document.createElement("div");
+  letterDiv.id = "letterDiv";
+  letterDiv.classList.add("letterDiv");
+  letterContainer.append(letterDiv);
   let letterBox = document.createElement("div");
   letterBox.id = "letter-box";
   let i = 1;
@@ -42,6 +47,12 @@ function removeLetterBox() {
     letterBox.remove();
   };
 
+  const letterDiv = document.getElementById("letterDiv");
+
+  if (letterDiv !== null) {
+  letterDiv.remove();
+  };
+
   lives = 5;
 
   let mainContainer = document.getElementById("main-container");
@@ -58,6 +69,8 @@ function removeLetterBox() {
   life3.style.display = "inline";
   life2.style.display = "inline";
   life1.style.display = "inline";
+
+  theWord = [];
 };
 
 // Betű beírása
@@ -72,7 +85,7 @@ form.addEventListener("submit", (event) => {
   for (let i = 0; i < theWord.length; i++) {
     if (userLetter == theWord[i]) {
       const letterDiv = document.getElementById(`letter-${i + 1}`);
-      letterDiv.classList.remove("unsolved");
+      // letterDiv.classList.remove("unsolved");
       letterDiv.classList.add("solved");
     } else {
       letter = `${userLetter}, `;
@@ -80,8 +93,8 @@ form.addEventListener("submit", (event) => {
     };
   };
 
-  const usedLettersContainer = document.getElementById("letter-container");
-  usedLettersContainer.append(letter);
+  const letterDiv = document.getElementById("letterDiv");
+  letterDiv.append(letter);
 
   // Élet csökkenése
   if (theWord.length == number) {
