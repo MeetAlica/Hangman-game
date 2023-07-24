@@ -62,12 +62,20 @@ body {
   align-items: center;
 }
 
-#letter-box div {
+.unsolved {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 100px;
   background-color: black;
+}
+
+.solved {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  background-color: white;
 }
 
 /* -------------------------------------------------- */
@@ -87,6 +95,8 @@ body {
   border-radius: 30px;
   font-weight: 600;
 }
+
+
 
 /* -------------------------------------------------- */
 

@@ -15,6 +15,8 @@ function randomWord() {
 // Divek létrehozása a betűknek
 const solutionContainer = document.getElementById("solution-container");
 
+const theWord = [];
+
 function createGame(str) {
   let letterBox = document.createElement("div");
   letterBox.id = "letter-box";
@@ -22,11 +24,14 @@ function createGame(str) {
   while (i <= str.length) {
     const letterDiv = document.createElement("div");
     letterDiv.id = `letter-${i}`;
+    letterDiv.classList.add("unsolved");
     letterDiv.textContent = str.at(i-1);
+    theWord.push(str.at(i-1));
     letterBox.append(letterDiv);
     i++;
   }
   solutionContainer.append(letterBox);
+  console.log(theWord);
 }
 
 // Előző játék kitörlése
@@ -41,4 +46,18 @@ function removeLetterBox() {
 let form = document.getElementById("formId");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const userLetter = document.getElementById("form-text").value;
+  console.log(userLetter);
+
+  // Összehasonlítás a megoldással
+  for (let i = 0; i < theWord.length; i++) {
+    if (userLetter == theWord[i]) {
+      const letterDiv = document.getElementById(`letter-${i + 1}`);
+      letterDiv.classList.remove("unsolved");
+      letterDiv.classList.add("solved");
+    } else {
+      const usedLettersContainer = document.getElementById("letter-container");
+      usedLettersContainer.append(userLetter);
+    };
+  };
 });
