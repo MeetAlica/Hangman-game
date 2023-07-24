@@ -31,17 +31,34 @@ function createGame(str) {
     theWord.push(str.at(i-1));
     letterBox.append(letterDiv);
     i++;
-  }
+  };
   solutionContainer.append(letterBox);
-}
+};
 
 // Előző játék kitörlése
 function removeLetterBox() {
   let letterBox = document.getElementById("letter-box");
   if (letterBox !== null) {
     letterBox.remove();
-  }
-}
+  };
+
+  lives = 5;
+
+  let mainContainer = document.getElementById("main-container");
+  mainContainer.classList.remove("lives-4", "lives-3", "lives-2", "lives-1", "lives-0");
+
+  let life5 = document.getElementById("lives-5");
+  let life4 = document.getElementById("lives-4");
+  let life3 = document.getElementById("lives-3");
+  let life2 = document.getElementById("lives-2");
+  let life1 = document.getElementById("lives-1");
+
+  life5.style.display = "inline";
+  life4.style.display = "inline";
+  life3.style.display = "inline";
+  life2.style.display = "inline";
+  life1.style.display = "inline";
+};
 
 // Betű beírása
 let form = document.getElementById("formId");
