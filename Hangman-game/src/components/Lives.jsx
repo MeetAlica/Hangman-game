@@ -1,11 +1,13 @@
-import Hearth from "../assets/hearth.png";
+const Lives = ({ guesses, maxGuesses }) => {
+  const renderLives = () => {
+    const livesIcons = [];
+    for (let i = 0; i < maxGuesses - guesses; i++) {
+      livesIcons.push(<span key={i}>🔋</span>);
+    }
+    return livesIcons;
+  };
 
-const Lives = (lives) => {
-  const hearts = Array.from({ length: lives }, (_, index) => (
-    <img key={index} src={Hearth} alt="Hearth" />
-  ));
-
-  return { hearts };
+  return <div>{renderLives()}</div>;
 };
 
 export default Lives;

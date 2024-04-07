@@ -1,8 +1,8 @@
 const Title = () => {
   return (
-    <div>
-      <h1>LetterQuest</h1>
-      <h3>Can You Unravel the Mystery?</h3>
+    <div className="text-zinc-900 text-lg lg:text-5xl italic m-5 font-bold font-sans">
+      <h1>Hackman - The hangman game</h1>
+      <h3>Can you guess the password?</h3>
     </div>
   );
 };
